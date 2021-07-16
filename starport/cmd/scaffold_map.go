@@ -31,5 +31,11 @@ func scaffoldMapHandler(cmd *cobra.Command, args []string) error {
 		return err
 	}
 
+	opts := scaffolder.AddTypeOption{
+		NoMessage: flagGetNoMessage(cmd),
+		Model:     scaffolder.Map,
+		Indexes:   indexes,
+	}
+
 	return scaffoldType(cmd, args, scaffolder.MapType(indexes...))
 }

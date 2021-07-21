@@ -71,10 +71,18 @@ func TypeWithModule(name string) AddTypeOption {
 	}
 }
 
-type AddTypeOption struct {
-	Model     TypeModel
-	NoMessage bool
-	Indexes   []string
+// TypeWithFields adds fields to the type to be scaffolded.
+func TypeWithFields(fields ...string) AddTypeOption {
+	return func(o *addTypeOptions) {
+		o.fields = fields
+	}
+}
+
+// TypeWithoutMessage disables generating sdk compatible messages and tx related APIs.
+func TypeWithoutMessage(fields ...string) AddTypeOption {
+	return func(o *addTypeOptions) {
+		o.withoutMessage = true
+	}
 }
 
 // AddType adds a new type to a scaffolded app.
@@ -157,9 +165,9 @@ func (s *Scaffolder) AddType(
 	switch {
 	case o.isList:
 		g, err = typed.NewStargate(tracer, opts)
-	case Map:
-		g, err = mapGenerator(tracer, opts, addTypeOptions.Indexes)
-	case Singleton:
+	case o.isMap:
+		g, err = mapGenerator(tracer, opts, o.indexes)
+	case o.isSingleton:
 		g, err = singleton.NewStargate(tracer, opts)
 	default:
 		g, err = dry.NewStargate(opts)

@@ -934,6 +934,7 @@ CRUD stands for "create, read, update, delete".
 * [starport scaffold packet](#starport-scaffold-packet)	 - Message for sending an IBC packet
 * [starport scaffold query](#starport-scaffold-query)	 - Query to get data from the blockchain
 * [starport scaffold single](#starport-scaffold-single)	 - CRUD for data stored in a single location
+* [starport scaffold type](#starport-scaffold-type)	 - Scaffold only a type definition
 * [starport scaffold vue](#starport-scaffold-vue)	 - Vue 3 web app template
 * [starport scaffold wasm](#starport-scaffold-wasm)	 - Import the wasm module to your app
 
@@ -1021,6 +1022,7 @@ starport scaffold map NAME [field]... [flags]
 
 ```
   -h, --help            help for map
+      --index strings   fields that index the value (default [index])
       --module string   Module to add into. Default is app's main module
       --no-message      Disable CRUD interaction messages scaffolding
   -p, --path string     path of the app
@@ -1143,6 +1145,28 @@ starport scaffold single NAME [field]... [flags]
 
 ```
   -h, --help            help for single
+      --module string   Module to add into. Default is app's main module
+      --no-message      Disable CRUD interaction messages scaffolding
+  -p, --path string     path of the app
+```
+
+**SEE ALSO**
+
+* [starport scaffold](#starport-scaffold)	 - Scaffold a new blockchain, module, message, query, and more
+
+
+## starport scaffold type
+
+Scaffold only a type definition
+
+```
+starport scaffold type NAME [field]... [flags]
+```
+
+**Options**
+
+```
+  -h, --help            help for type
       --module string   Module to add into. Default is app's main module
       --no-message      Disable CRUD interaction messages scaffolding
   -p, --path string     path of the app
